@@ -1,0 +1,344 @@
+/* App.css */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  padding: 16px 0;
+  margin-bottom: 30px;
+}
+
+.logo {
+  position: absolute;
+  left: 20px;
+  height: 50px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50;
+  text-shadow: 0 0 12px rgb(56, 138, 154);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  color: #2c3e50;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.upload-area {
+  background-color: white;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 10px 30px;
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.upload-area.drag-over {
+  background-color: #e0f7fa;
+  border-color: #00acc1;
+}
+
+.upload-area input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.upload-icon {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.selected-file {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.options {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  width: 100%;
+  max-width: 650px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.options label:hover {
+  background-color: #e3f2fd;
+  transform: scale(1.03);
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button {
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(56, 138, 154);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.results {
+  margin-top: 30px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 700px;
+}
+
+.results h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.results a {
+  display: block;
+  margin: 8px 0;
+  color: #3877bc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.results a:hover {
+  text-decoration: underline;
+}
+
+.results video {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.frame-gallery {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.frame-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.frame-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.frame-item img:hover {
+  transform: scale(1.05);
+}
+
+.frame-label {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.graph-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.graph-section img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.frame-label-title {
+  text-align: left;
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-top: 20px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  color: #fff;
+  font-size: 28px;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.nav-button.left {
+  left: 10px;
+}
+
+.nav-button.right {
+  right: 10px;
+}
+
+.popup-filename {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  z-index: 1002;
+}
+
+.graph-title {
+  text-align: left;
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-top: 20px;
+}
+
+
+
+@media (max-width: 480px) {
+  .options {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .buttons button {
+    width: 100%;
+  }
+
+  .frame-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    max-height: 300px;
+  }
+}

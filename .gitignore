@@ -1,0 +1,14 @@
+# כלליים
+node_modules/
+.env
+.DS_Store
+*.log
+
+# VSCode
+.vscode/
+
+# נתונים זמניים
+sessions/
+uploads/
+frames/
+*.pt

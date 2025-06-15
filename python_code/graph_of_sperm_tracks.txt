@@ -1,0 +1,66 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import sys
+import os
+
+def plot_tracks(input_csv, output_image):
+    print(f"[INFO] Reading input CSV: {input_csv}")
+    df = pd.read_csv(input_csv)
+
+    # אם אין x_center ו־y_center, נחשב אותם
+    if "x_center" not in df.columns or "y_center" not in df.columns:
+        if {"x1", "y1", "x2", "y2"}.issubset(df.columns):
+            df["x_center"] = (df["x1"] + df["x2"]) / 2
+            df["y_center"] = (df["y1"] + df["y2"]) / 2
+            print("[INFO] Calculated x_center and y_center from x1/x2/y1/y2")
+        else:
+            raise ValueError("CSV is missing required position columns.")
+
+    required_columns = {"x_center", "y_center", "track_id", "frame"}
+    if not required_columns.issubset(df.columns):
+        raise ValueError("Missing required columns in CSV.")
+
+    if df.empty:
+        raise ValueError("Input CSV is empty. Cannot generate graph.")
+
+    # יצירת גרף
+    plt.figure(figsize=(10, 8))
+    for track_id, group in df.groupby("track_id"):
+        group_sorted = group.sort_values("frame")
+        plt.plot(group_sorted["x_center"], group_sorted["y_center"], label=f"ID {track_id}")
+
+    plt.title("Filtered Sperm Tracks")
+    plt.xlabel("x_center")
+    plt.ylabel("y_center")
+    plt.gca().invert_yaxis()
+
+    # 🟢 legend בתחתית, בפריסה אופקית
+    plt.legend(
+        loc='upper center',
+        bbox_to_anchor=(0.5, -0.15),
+        fontsize='small',
+        title='Track IDs',
+        ncol=8  # 🟡 אפשר לשנות ל־8 או 10 אם יש הרבה מסלולים
+    )
+
+    plt.grid(True)
+    plt.tight_layout(rect=[0, 0.15, 1, 1])  # השאר שוליים למטה
+
+    os.makedirs(os.path.dirname(output_image), exist_ok=True)
+    plt.savefig(output_image, bbox_inches='tight')
+    print(f"[SUCCESS] Graph saved to: {output_image}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python graph_of_sperm_tracks.py <input_csv> <output_image_path>")
+        sys.exit(1)
+
+    input_csv = sys.argv[1]
+    output_image = sys.argv[2]
+
+    try:
+        plot_tracks(input_csv, output_image)
+    except Exception as e:
+        print(f"[ERROR] Failed to generate graph: {e}")
+
+
